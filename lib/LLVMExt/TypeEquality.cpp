@@ -47,6 +47,7 @@ static size_t getTypeArity(const llvm::Type *type) {
     return type->getStructNumElements() + 3;
   }
   }
+  llvm_unreachable("Unknown type");
 }
 
 static size_t getTypeId(const llvm::Type *type) {

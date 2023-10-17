@@ -1,12 +1,12 @@
 ---
-- name: Download Joern ({{ joern_version }})
+- name: Download Joern
   get_url:
     url: "{{ joern_url }}"
     dest: "{{ working_dir }}/joern.zip"
     timeout: 30
   register: download_joern
 
-- name: Extract Joern ({{ joern_version }})
+- name: Extract Joern
   no_log: true
   unarchive:
     src: "{{ working_dir }}/joern.zip"

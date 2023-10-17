@@ -1,17 +1,26 @@
 ---
-- name: Clone sources
-  git:
-    repo: "{{ repo_url }}"
+# - name: Clone sources
+#   git:
+#     repo: "{{ repo_url }}"
+#     dest: "{{ source_dir }}"
+#     version: "{{ gitref }}"
+#     accept_hostkey: true
+#     ssh_opts: "-o ForwardAgent=yes -o StrictHostKeyChecking=no"
+
+# change to copy rather than clone
+- name: Copy Sources
+  copy:
+    src: "{{ playbook_dir }}/../"
     dest: "{{ source_dir }}"
-    version: "{{ gitref }}"
-    accept_hostkey: true
-    ssh_opts: "-o ForwardAgent=yes -o StrictHostKeyChecking=no"
 
 - name: Build llvm2cpg
   include: helpers/build-llvm2cpg.yaml
   vars:
     build_dir: "{{ debug_build_dir }}"
     build_type: Debug
+  
+- name: Start run debug tests
+  command: echo "Start run debug tests"
 
 - name: Run tests
   include: helpers/run-tests.yaml
@@ -24,6 +33,9 @@
   vars:
     build_dir: "{{ release_build_dir }}"
     build_type: Release
+
+- name: Start run release tests
+  command: echo "Start run release tests"
 
 - name: Run tests
   include: helpers/run-tests.yaml

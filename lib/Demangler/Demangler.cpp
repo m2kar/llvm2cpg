@@ -1,4 +1,6 @@
 #include "llvm2cpg/Demangler/Demangler.h"
+#include <llvm/Support/ErrorHandling.h>
+
 #include <cxxabi.h>
 #include <regex>
 #include <sstream>
@@ -124,4 +126,5 @@ std::string Demangler::extractName(const std::string &mangledName) {
   case ManglingType::ObjC:
     return result.result;
   }
+  llvm_unreachable("Unknown type");
 }

@@ -1,5 +1,5 @@
 ---
-repo_url: https://github.com/ShiftLeftSecurity/llvm2cpg.git
+repo_url: ssh://git@git.vulgraph.net:8022/bsca/llvm2cpg.git 
 llvm_version: 9.0.0
 ocular_version: 0.4.3
 koern_version: "latest"
@@ -7,7 +7,7 @@ koern_version: "latest"
 llvm2cpg_cxx_flags: ""
 
 working_dir: /opt
-gitref: master
+gitref: main
 
 llvm_mapping:
   ubuntu:
@@ -50,5 +50,6 @@ release_build_dir: "{{ working_dir }}/build.llvm2cpg.release.dir"
 ocular_url: "https://www.shiftleft.io/download/ocular/{{ lookup('env','OCULAR_ORG_ID') }}/ocular-distribution-{{ ocular_version }}.zip"
 ocular_dir: "{{ working_dir }}/ocular"
 
-joern_url: "https://github.com/ShiftLeftSecurity/joern/releases/latest/download/joern-cli.zip"
+joern_version: "v1.1.1742"
+joern_url: "https://github.com/joernio/joern/releases/download/{{ joern_version }}/joern-cli.zip"
 joern_dir: "{{ working_dir }}/joern-cli"

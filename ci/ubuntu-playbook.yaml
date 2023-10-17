@@ -1,5 +1,9 @@
 - name: Ubuntu CI
-  hosts: "{{ host | default('all') }}"
+  # hosts: "{{ host | default('all') }}"
+  hosts: 
+  #  - "host"
+   - "localhost"
+   - "all"
 
   vars:
     platform: ubuntu
@@ -36,18 +40,6 @@
     - name: Prepare Working Directory
       include: helpers/working-dir.yaml
 
-    - name: Add sbt key
-      apt_key:
-        keyserver: keyserver.ubuntu.com
-        id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
-      become: true
-
-    - name: Add sbt repo
-      apt_repository:
-        repo: "deb https://dl.bintray.com/sbt/debian /"
-        state: present
-      become: true
-
     - name: Install Required Packages
       apt:
         name: "{{ packages }}"
@@ -73,8 +65,8 @@
       when: download_cmake.changed
       become: true
 
-    # - name: Install Ocular
-    #   include: helpers/install-ocular.yaml
+    - name: Install Sbt
+      include: helpers/install-sbt.yaml
 
     - name: Install Joern
       include: helpers/install-joern.yaml
@@ -84,9 +76,6 @@
 
     - name: Install Protobuf
       include: helpers/install-protobuf.yaml
-
-    - name: Install Libzip
-      include: helpers/install-libzip.yaml
 
     - name: Build and test
       include: helpers/build-and-test.yaml

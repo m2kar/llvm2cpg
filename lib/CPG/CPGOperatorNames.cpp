@@ -1,6 +1,7 @@
 #include "llvm2cpg/CPG/CPGOperatorNames.h"
 #include <llvm/IR/Instruction.h>
 #include <llvm/IR/Instructions.h>
+#include <llvm/Support/ErrorHandling.h>
 
 std::string llvm2cpg::binaryOperatorName(const llvm::BinaryOperator *instruction) {
   switch (instruction->getOpcode()) {
@@ -43,6 +44,7 @@ std::string llvm2cpg::binaryOperatorName(const llvm::BinaryOperator *instruction
   case llvm::Instruction::BinaryOpsEnd:
     return instruction->getOpcodeName();
   }
+  llvm_unreachable("Unknown binary operator");
 }
 
 std::string llvm2cpg::binaryOperatorNameShort(const llvm::BinaryOperator *instruction) {
@@ -85,6 +87,7 @@ std::string llvm2cpg::binaryOperatorNameShort(const llvm::BinaryOperator *instru
   case llvm::Instruction::BinaryOpsEnd:
     return instruction->getOpcodeName();
   }
+  llvm_unreachable("Unknown binary operator");
 }
 
 std::string llvm2cpg::comparisonOperatorName(const llvm::CmpInst *instruction) {
@@ -132,6 +135,7 @@ std::string llvm2cpg::comparisonOperatorName(const llvm::CmpInst *instruction) {
     return std::string(instruction->getOpcodeName()) +
            llvm::CmpInst::getPredicateName(instruction->getPredicate()).str();
   }
+  llvm_unreachable("Unknown comparison operator");
 }
 
 std::string llvm2cpg::comparisonOperatorNameShort(const llvm::CmpInst *instruction) {
@@ -179,6 +183,7 @@ std::string llvm2cpg::comparisonOperatorNameShort(const llvm::CmpInst *instructi
     return std::string(instruction->getOpcodeName()) +
            llvm::CmpInst::getPredicateName(instruction->getPredicate()).str();
   }
+  llvm_unreachable("Unknown comparison operator");
 }
 
 std::string llvm2cpg::castOperatorName(const llvm::CastInst *instruction) {
@@ -223,4 +228,5 @@ std::string llvm2cpg::atomicOperatorName(const llvm::AtomicRMWInst *instruction)
   case llvm::AtomicRMWInst::BAD_BINOP:
     return name + "BAD_BINOP";
   }
+  llvm_unreachable("Unknown atomic operator");
 }
