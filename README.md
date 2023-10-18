@@ -21,6 +21,12 @@ If you get questions - feel free to open [an issue](https://github.com/ShiftLeft
 2. run ansible playbook
 ```bash
 ansible-playbook ci/ubuntu-playbook.yaml
+
+# or skip the failed task
+ansible-playbook -v ci/ubuntu-playbook.yaml --skip-tags "failed"
+
+# the package will be store in /tmp/packages
+# eg. /tmp/packages/llvm2cpg-0.8.0-LLVM-9.0-ubuntu-20.04.zip
 ```
 
 ## Build using cmake directly
@@ -72,6 +78,5 @@ bin/cypher-shell -u neo4j -p neo4j
 
 find /var/lib/neo4j/import -name 'nodes_*_cypher.csv' -exec bin/cypher-shell -u neo4j -p "<password>" --file {} \;
 find /var/lib/neo4j/import -name 'edges_*_cypher.csv' -exec bin/cypher-shell -u neo4j -p "<password>" --file {} \;
-
 
 ```

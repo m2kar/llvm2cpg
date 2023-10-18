@@ -9,9 +9,10 @@
 
 # change to copy rather than clone
 - name: Copy Sources
-  copy:
-    src: "{{ playbook_dir }}/../"
-    dest: "{{ source_dir }}"
+  shell: |
+    rm -rf {{ source_dir }}
+    mkdir -p {{ source_dir }}
+    cp -r {{ playbook_dir }}/../ {{ source_dir }}
 
 - name: Build llvm2cpg
   include: helpers/build-llvm2cpg.yaml

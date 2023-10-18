@@ -16,6 +16,8 @@
   command: make run-end2end-tests
   args:
     chdir: "{{ build_dir }}"
+  tags:
+    - failed
 
 # - name: Drop CMakeCache for Ocular tests ({{ build_type }})
 #   ansible.builtin.file:
