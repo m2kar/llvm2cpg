@@ -1,5 +1,8 @@
 ---
-- name: Download Joern
+- name: Start install joern
+  command: echo "Start install joern"
+
+- name: Download Joern ({{ joern_version }})
   get_url:
     url: "{{ joern_url }}"
     dest: "{{ working_dir }}/joern.zip"

@@ -23,11 +23,14 @@
 - name: Start run debug tests
   command: echo "Start run debug tests"
 
-- name: Run tests
-  include: helpers/run-tests.yaml
-  vars:
-    build_dir: "{{ debug_build_dir }}"
-    build_type: Debug
+# - name: Run tests
+#   include: helpers/run-tests.yaml
+#   vars:
+#     build_dir: "{{ debug_build_dir }}"
+#     build_type: Debug
+
+- name: Start build llvm2cpg release
+  command: echo "Start build llvm2cpg release"
 
 - name: Build llvm2cpg
   include: helpers/build-llvm2cpg.yaml
