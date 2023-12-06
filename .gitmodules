@@ -6,4 +6,7 @@
 	url = https://github.com/gabime/spdlog.git
 [submodule "vendor/LibEBC"]
 	path = vendor/LibEBC
-	url = https://github.com/AlexDenisov/LibEBC.git
+	url = https://github.com/m2kar/LibEBC.git 
+[submodule "vendor/libzip"]
+	path = vendor/libzip
+	url = https://github.com/nih-at/libzip.git

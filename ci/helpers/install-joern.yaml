@@ -9,7 +9,7 @@
     timeout: 30
   register: download_joern
 
-- name: Extract Joern ({{ joern_version }})
+- name: Extract Joern
   no_log: true
   unarchive:
     src: "{{ working_dir }}/joern.zip"

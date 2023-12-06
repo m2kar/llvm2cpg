@@ -422,9 +422,12 @@ void Transforms::inlineGlobalStrings(llvm::Module &bitcode) {
     } else if (global.hasName() && global.getName().startswith("OBJC_SELECTOR_REFERENCES_")) {
       inlineableGlobals.push_back(&global);
     } else if (auto *initAsConst = llvm::dyn_cast<llvm::ConstantExpr>(global.getInitializer())) {
-      if (initAsConst->isCast() && (initAsConst->getNumOperands() != 0) &&
-          (objcTypes.count(initAsConst->getOperand(0)->getType()->getPointerElementType()) != 0)) {
-        inlineableGlobals.push_back(&global);
+      if (initAsConst->isCast() && (initAsConst->getNumOperands() != 0)) {
+          if (llvm::PointerType *ptrType = llvm::dyn_cast<llvm::PointerType>(initAsConst->getOperand(0)->getType())) {
+              if (objcTypes.count(ptrType->getElementType()) != 0) {
+                  inlineableGlobals.push_back(&global);
+              }
+          }
       }
     }
   }
