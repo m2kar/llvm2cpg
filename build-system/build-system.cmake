@@ -9,7 +9,8 @@ include(${CMAKE_CURRENT_LIST_DIR}/cpack.cmake)
 set (LLVM2CPG_INCLUDE_DIRS
   ${CMAKE_SOURCE_DIR}/include
   )
-
+  
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 
 set (LLVM2CPG_CXX_FLAGS
   -std=c++14

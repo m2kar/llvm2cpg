@@ -2,7 +2,7 @@
 repo_url: https://github.com/ShiftLeftSecurity/llvm2cpg.git
 llvm_version: 9.0.0
 ocular_version: 0.4.3
-koern_version: "latest"
+joern_version: "latest"
 
 llvm2cpg_cxx_flags: ""
 
