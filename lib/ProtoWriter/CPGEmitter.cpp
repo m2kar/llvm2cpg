@@ -212,6 +212,9 @@ CPGProtoNode *CPGEmitter::visitStoreInst(llvm::StoreInst &instruction) {
   if (instruction.hasMetadata()) {
     if (llvm::MDNode *md = instruction.getMetadata("shiftleft.inline_string_literal")) {
       valueNode = emitInlineString(md, 0);
+      if(!valueNode){
+        valueNode=emitConstant(-1); //work,but may be not worked well
+      }
       assert(valueNode);
     }
   }
